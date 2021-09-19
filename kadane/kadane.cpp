@@ -6,11 +6,11 @@ int check_all_subarrays(int size, int arr[]) {
     int max_sum = arr[0];
 
     // try subarrays of all sizes
-    for (int n = 1; n <= size + 1; n++){             
-        for(int i = 0; i < size + 1 - n; i++){  
+    for (int n = 0; n <= size; n++){             
+        for(int i = 0; i < size; i++){  
 
             int cur_sum = 0;           
-            for(int j = i; j < i + n; j++ ){   
+            for(int j = n; j < i; j++ ){   
                 cur_sum += arr[j];
             }
             if(cur_sum > max_sum){
