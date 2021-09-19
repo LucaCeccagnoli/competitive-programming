@@ -4,7 +4,7 @@ Given an array containing both negative and positive integers, find the contiguo
 ## Sub-optimal solution
 Compare the sum of all possible subarrays. Requires three nested loops.
 
-Time complexity: O(n^2).
+Time complexity: O(n^3).
 
 Space complexity: O(n).
 
