@@ -3,7 +3,9 @@ Given an array containing both negative and positive integers, find the contiguo
 
 ## Sub-optimal solution
 Compare the sum of all possible subarrays. Requires three nested loops.
+
 Time complexity: O(n^2).
+
 Space complexity: O(n).
 
 ## Optimal solution
@@ -13,4 +15,5 @@ Iterate through the array and keep track of the sum with two variables: **accumu
 - **current_max** to stores the maximum sum found up to this point.
 
 Time complexity: O(n), we only iterate through the array once.
+
 Space complexity: O(n).
