@@ -51,3 +51,8 @@ int main(){
 
     return 0;
 }
+
+
+/*
+    if sub.size = 1:
+*/

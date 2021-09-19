@@ -10,5 +10,5 @@ Iterate the array backwards and save the highest value foud. This way we know th
 - Time complexity: O(n)
     - one iteration over array of size n
 
-- Space complexity: O(n)
+- Space complexity: O(1)
     - we only use one extra variable to store the highest value
