@@ -10,7 +10,7 @@ find the longest k-good subarray in A.S (return indexes)
 Iterate throught the array using a sliding window.
 Use a dictionary K where the keys represent the distinct integers in the current window, and values store their respective number of occurrencies.
 When moving the head of the window, insert the new item as a key in K, or increment its value if it is already present.
-If the number of keys (with value > 1) exceeds k, move the tail forward until a key in K reaches value 0.
+If the number of keys (with value > 0) exceeds k, move the tail forward until a key in K reaches value 0.
 
 ### time complexity
 By implementing the dictionary as a hash table, search, insert and delete operations take constant time on average.
