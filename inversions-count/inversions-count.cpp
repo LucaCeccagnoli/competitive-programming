@@ -73,7 +73,9 @@ int main(){
         {1, 1, 1, 1, 7, 1}
     };
 
+    /*
     for(int i = 0; i < test_case.size(); i++){
         cout << inversions_count(test_case[i], 0, test_case[i].size() - 1) << endl;
     }
+    */
 }
