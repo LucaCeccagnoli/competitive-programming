@@ -17,7 +17,7 @@ In each subproblem encountered by the *merge* function, we define L and R as the
 
 The algorithm defines the function *merge_inversions*, which sorts an array like the *merge* subroutine, but with additional steps:
 
-- if an item is pushed from R and there are still unpushed items in L, add an inversion to the counter *incr*
+- if an item is pushed from R and there are still unpushed items in L, add an inversion to the counter *incr*.
 
 - every time an item is pushed from L, add *incr* to the total number of inversions.
 

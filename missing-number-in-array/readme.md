@@ -9,5 +9,4 @@ We can find the missing number by calculating the sum of the array elements and 
 Time complexity: O(n).
 - the array is iterated once to sum its elements.
 
-
 Space complexity: O(1)

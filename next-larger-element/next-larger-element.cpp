@@ -43,6 +43,5 @@ int main(){
         arr.push_back(value);
         
     }
-
     next_largest(arr);
 }

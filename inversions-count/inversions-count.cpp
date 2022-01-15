@@ -4,25 +4,25 @@ using namespace std;
 #include <cmath>
 
 int merge_inversions(vector<int>&A, int const left, int const mid, int const right){
-    int l = left;
+    int l = left;           // part of the array to be analyzed
     int r = mid + 1;
 
-    vector<int> sorted; 
+    vector<int> sorted_array; 
 
-    int incr = 0;
+    int incr = 0;           // 
     int inversions = 0;
 
     while ( l <= mid && r <= right)
     {
         if (A[l] > A[r]){             
-            sorted.push_back(A[r]);
+            sorted_array.push_back(A[r]);
             r++;
 
             // inversion occurs
             incr++;
         }
         else{
-            sorted.push_back(A[l]); 
+            sorted_array.push_back(A[l]); 
             l++;
 
             // l increased, add #r increments to total inversions
@@ -32,20 +32,20 @@ int merge_inversions(vector<int>&A, int const left, int const mid, int const rig
 
     while( r <= right){
         // no more inversions in this subproblem
-       sorted.push_back(A[r]);
+       sorted_array.push_back(A[r]);
        r++;
     }
 
     while ( l <= mid){
         // for each iteration, add #r increments to total inversions
         inversions += incr;
-        sorted.push_back(A[l]);
+        sorted_array.push_back(A[l]);
         l++;
     }
 
     // update array
     for( int i = left; i <= right; i++){
-        A[i] = sorted[i - left];
+        A[i] = sorted_array[i - left];
     }
 
     return inversions;
@@ -72,10 +72,4 @@ int main(){
         {16, 8, 4, 2, 1},
         {1, 1, 1, 1, 7, 1}
     };
-
-    /*
-    for(int i = 0; i < test_case.size(); i++){
-        cout << inversions_count(test_case[i], 0, test_case[i].size() - 1) << endl;
-    }
-    */
 }
