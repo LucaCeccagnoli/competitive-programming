@@ -55,7 +55,7 @@ int max_damage(std::set<Spell> &fire_spells, std::set<Spell> &lightning_spells)
         while (!fire_spells.empty())
         {
             to_cast = *fire_spells.begin();
-            damage += to_cast.power;
+            total_damage += to_cast.power;
             fire_spells.erase(to_cast);
             pertwo = false;
         }
