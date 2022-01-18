@@ -1,7 +1,9 @@
 using namespace std;
 #include <iostream>
 #include <vector>
+#include <map>
 #include <cmath>
+#include <algorithm>
 
 int merge_inversions(vector<int>&A, int const left, int const mid, int const right){
     int l = left;           // part of the array to be analyzed

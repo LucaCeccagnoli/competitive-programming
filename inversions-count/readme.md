@@ -26,8 +26,27 @@ The algorithm defines the function *merge_inversions*, which sorts an array like
 
 Every call of *inversions_count* sums the number of inversions from its recursive call and its respective call to *merge_inversions*.
 
-### Time complexity
-O(n*logn), only constant time operations are added to the default merge sort.
+## Time complexity
+O(nlogn), only constant time operations are added to the default merge sort.
 
-### Space complexity
+## Space complexity
 O(n), auxiliary vector to store the sorted elements at every *inversions_count* call.
+
+## Fenwick Tree Solution
+
+- create an array C with the compressed coordinates of A -> O(nlogn)
+- create a fenwick tree T of size n+1, initialized to 0, which stores the number of inversions.
+- iterate C backwards with i
+	- for each C[i] = x, set T[x] to 1. (NB: not using fenwick tree update ?)
+	- add sum(x - 1) to the total number of inversions. 
+	- which values in T are flipped first determines the number of inversions
+
+## Time complexity
+C and T both require O(nlogn) to be built.
+Iterating C backwards + sum(i) operations on T = O(nlogn)
+
+total: O(nlogn)
+
+## Space complexity
+T requires O(n) space.
+C requires O(n) space.
