@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include "data-tructures/BIT/bit.hpp"
+#include "data_structures/binary_indexed_tree/bit.h"
 
 std::vector<int> coordinate_compression(std::vector<int> arr){      //copy value
     int count = 0;
