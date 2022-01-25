@@ -14,15 +14,14 @@ int main(){
 
     for(int i = 0; i < size; i++){
         // pointer to the position of the original element in the sorted array
-        int original = A[i];
 
         // TODO: this takes values, need indexes
-        auto ref = std::lower_bound(A.begin(), A.end(), original);
+        auto ref = std::lower_bound(A.begin(), A.end(), i);
 
         std::cout << *ref << std::endl;
 
         auto a = A.begin();
-        auto ptr_S = (int) (std::lower_bound(S.begin(), S.end(), original) - S.begin());
+        auto ptr_S = (int) (std::lower_bound(S.begin(), S.end(), i) - S.begin());
 
         // original element's position equal to the position of its pointer in the sorted array
         //C[i] = A[ptr_S];
