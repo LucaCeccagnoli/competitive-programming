@@ -75,44 +75,24 @@ void Tree::updateUtil(int start, int end, int value, int left, int right, int in
     if(updates[index] != 0){
         applyUpdate(index);
     }
-    // if query exploits circularity
-    if(start > end){
-        if(start <= left && end <= left || start >= right && end >= right){
-            // segment fully overlaps
-            // directly increase the value and propagate to children
-            addUpdate(index, value);
-            applyUpdate(index);
-        }
-        else if(start > right && end < left){
-            // segment does not overlap
-            // do nothing
-        }
-        else{
-            //segments partially overlap  
-            updateUtil(start, end, value, left, HALF(left, right), LEFT(index));
-            updateUtil(start, end, value, HALF(left, right) + 1, right, RIGHT(index));
-        }
+    if(start <= left && end >= right){
+        // segment fully overlaps
+        // directly increase the value and propagate to children
+        addUpdate(index, value);
+        applyUpdate(index);
     }
-    else if(start <= end){
-        if(start <= left && end >= right){
-            // segment fully overlaps
-            // directly increase the value and propagate to children
-            addUpdate(index, value);
-            applyUpdate(index);
-        }
-        else if(start > right || end < left){
-            // segment does not overlap
-            // do nothing
-        }
-        else{
-            //segments partially overlap
-            int a = right/2 + 1;
-            updateUtil(start, end, value, left, HALF(left, right), LEFT(index));
-            updateUtil(start, end, value, HALF(left, right) + 1, right, RIGHT(index));
+    else if(start > right || end < left){
+        // segment does not overlap
+        // do nothing
+    }
+    else{
+        //segments partially overlap
+        int a = right/2 + 1;
+        updateUtil(start, end, value, left, HALF(left, right), LEFT(index));
+        updateUtil(start, end, value, HALF(left, right) + 1, right, RIGHT(index));
 
-            // update current node
-            set_min(index);
-        }
+        // update current node
+        set_min(index);
     }
 }
 
@@ -122,41 +102,22 @@ int Tree::queryMinUtil(int start, int end, int left, int right, int index){
         applyUpdate(index);
     }
 
-    // if query exploits circularity
-    if(start > end){
-        if(start <= left){
-            // segment fully overlaps
-            return tree[index];
-        }
-        else if(start > right || end < left){
-            // segment does not overlap
-            return INT_MAX;
-        }
-        else{
-            //segments partially overlap
-            return std::min(
-                queryMinUtil(start, end, left, HALF(left, right), LEFT(index)),
-                queryMinUtil(start, end, HALF(left, right) + 1, right, RIGHT(index))
-            );
-        }
+    if(start <= left && end >= right){
+        // segment fully overlaps
+        return tree[index];
+    }
+    else if(start > right || end < left){
+        // segment does not overlap
+        return INT_MAX;
     }
     else{
-        if(start <= left && end >= right){
-            // segment fully overlaps
-            return tree[index];
-        }
-        else if(start > right || end < left){
-            // segment does not overlap
-            return INT_MAX;
-        }
-        else{
-            //segments partially overlap
-            return std::min(
-                queryMinUtil(start, end, left, HALF(left, right), LEFT(index)),
-                queryMinUtil(start, end, HALF(left, right) + 1, right, RIGHT(index))
-            );;
-        }
+        //segments partially overlap
+        return std::min(
+            queryMinUtil(start, end, left, HALF(left, right), LEFT(index)),
+            queryMinUtil(start, end, HALF(left, right) + 1, right, RIGHT(index))
+        );;
     }
+    
 }
 
 int input(){
@@ -205,15 +166,3 @@ int input(){
     }
     return 0;
 }
-
-
-int main(){
-    std::vector<int> arr{3,1,6,4,6,6,2,0};
-    Tree t(arr);
-    //t.inc(2,4,2);
-    t.update(6,1,1);
-    return 0;
-}
-
-// input: insert data in vector
-// check vector length fro arguments
