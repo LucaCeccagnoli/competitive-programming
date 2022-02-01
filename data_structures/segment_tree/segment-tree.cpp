@@ -1,25 +1,48 @@
 #include <vector>
-#include "segment-tree.hpp"
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
 
-SegmentTree::SegmentTree(std::vector<int> const &arr){
-    int arr_size = arr.size();
-    int tree_size = arr_size * 2 - 1;
+#define MID(l,r) l + (r - l) / 2 
+#define LEFT(i) 2 * i + 1
+#define RIGHT(i) 2 * i + 2
 
-    // insert leaf nodes from array
-    for(int i = 0; i < arr_size; i++){
-        tree[arr_size + i -1] = arr[i];
+// example of segment tree for prefix sums
+
+template<typename T>
+struct SegmentTree{
+    public: 
+        vector<T> tree;
+        int arr_size, tree_size;
+
+        SegmentTree(vector<T> const &arr){
+            arr_size = arr.size();
+
+            int height = (int) ceil(log2(arr_size));
+            tree_size = 2 * pow(2, height) - 1;
+
+            tree = vector<T>(tree_size, 0);
+            build(arr, 0, arr_size - 1, 0);
+        }
+    private:
+        T build(vector<T> const &arr, int left, int right, int root){
+            if(left == right){
+                tree[root] = arr[left];
+                return arr[left];
+            }
+            
+            tree[root] = build(arr, left, MID(left, right), LEFT(root)) + build(arr, MID(left,right) + 1, right, RIGHT(root));
+            return tree[root];
+        }
+};
+
+int main(){
+    typedef int int_type;
+    vector<int_type> arr{1, 3, 5, 7, 9, 11};
+    SegmentTree<int_type> st = SegmentTree<int_type>(arr);
+
+    for(int i = 0; i < st.tree_size; i++){
+        cout << st.tree[i] << " ";
     }
-
-    // calculate parents
-    for(int i = arr_size - 2; i >= 0; i--){
-        tree[i] = tree[2 * i + 1] + tree[2 * i + 1];
-    }
-}
-
-void SegmentTree::update(int left, int right, int value){
-    updateUtil(0, left, right, value);
-}
-
-void SegmentTree::update(int left, int right, int value){
-    
+    cout << endl;
 }

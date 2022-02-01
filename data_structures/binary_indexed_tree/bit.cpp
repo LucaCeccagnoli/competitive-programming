@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-#include "bit.hpp"
+#include "bit.h"
 
 // initialize array of length size + 1, all elements to 0
 BIT::BIT(int size){
