@@ -75,18 +75,18 @@ void Tree::updateUtil(int start, int end, int value, int left, int right, int in
     if(updates[index] != 0){
         applyUpdate(index);
     }
+    // total overlap
     if(start <= left && end >= right){
-        // segment fully overlaps
         // directly increase the value and propagate to children
         addUpdate(index, value);
         applyUpdate(index);
     }
+    // no overlap
     else if(start > right || end < left){
-        // segment does not overlap
         // do nothing
     }
+    // partial overlap
     else{
-        //segments partially overlap
         int a = right/2 + 1;
         updateUtil(start, end, value, left, HALF(left, right), LEFT(index));
         updateUtil(start, end, value, HALF(left, right) + 1, right, RIGHT(index));
